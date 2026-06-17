@@ -74,23 +74,13 @@ export default function UserForm() {
             setFormData({
 
                 rut: person.rut ?? "",
-
                 firstName: person.first_name ?? "",
-
-                lastNameFather:
-                    person.last_name_father ?? "",
-
-                lastNameMother:
-                    person.last_name_mother ?? "",
-
+                lastNameFather: person.last_name_father ?? "",
+                lastNameMother: person.last_name_mother ?? "",
                 address: person.address ?? "",
-
                 commune: person.commune ?? "",
-
                 email: person.email ?? "",
-
                 phone: person.phone ?? "",
-
             });
 
         } catch (err) {
@@ -176,18 +166,10 @@ export default function UserForm() {
 
         const newErrors: FormErrors = {};
 
-        const rutRegex =
-            /^\d{7,8}-[\dkK]$/;
-
-        const nameRegex =
-            /^[A-Za-zÁÉÍÓÚáéíóúÑñ\s]+$/;
-
-        const emailRegex =
-            /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-
-        const phoneRegex =
-            /^[0-9]{8,15}$/;
-
+        const rutRegex = /^\d{7,8}-[\dkK]$/;
+        const nameRegex = /^[A-Za-zÁÉÍÓÚáéíóúÑñ\s]+$/;
+        const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+        const phoneRegex = /^[0-9]{8,15}$/;
         if (
             !formData.rut ||
             !rutRegex.test(formData.rut)
@@ -204,10 +186,7 @@ export default function UserForm() {
                 formData.firstName
             )
         ) {
-
-            newErrors.firstName =
-                "El nombre solo puede contener letras";
-
+            newErrors.firstName = "El nombre solo puede contener letras";
         }
 
         if (
@@ -216,10 +195,7 @@ export default function UserForm() {
                 formData.lastNameFather
             )
         ) {
-
-            newErrors.lastNameFather =
-                "Apellido paterno inválido";
-
+            newErrors.lastNameFather = "Apellido paterno inválido";
         }
 
         if (
@@ -228,26 +204,17 @@ export default function UserForm() {
                 formData.lastNameMother
             )
         ) {
-
-            newErrors.lastNameMother =
-                "Apellido materno inválido";
-
+            newErrors.lastNameMother = "Apellido materno inválido";
         }
 
         if (
             !formData.address.trim()
         ) {
-
-            newErrors.address =
-                "La dirección es obligatoria";
-
+            newErrors.address = "La dirección es obligatoria";
         }
 
         if (!formData.commune) {
-
-            newErrors.commune =
-                "Seleccione una comuna";
-
+            newErrors.commune = "Seleccione una comuna";
         }
 
         if (
@@ -256,10 +223,7 @@ export default function UserForm() {
                 formData.email
             )
         ) {
-
-            newErrors.email =
-                "Correo electrónico inválido";
-
+            newErrors.email = "Correo electrónico inválido";
         }
 
         if (
@@ -268,10 +232,7 @@ export default function UserForm() {
                 formData.phone
             )
         ) {
-
-            newErrors.phone =
-                "El teléfono debe tener entre 8 y 15 números";
-
+            newErrors.phone = "El teléfono debe tener entre 8 y 15 números";
         }
 
         setErrors(newErrors);
@@ -308,12 +269,9 @@ export default function UserForm() {
                     {
 
                         method: "POST",
-
                         headers: {
-
                             "Content-Type":
                                 "application/json",
-
                         },
 
                         body:
@@ -364,60 +322,18 @@ export default function UserForm() {
 
         <form
             onSubmit={handleSubmit}
-            className="
-                pb-10
-                space-y-6
-                max-w-lg
-                mx-auto
-            "
+            className="pb-10 space-y-6 max-w-lg mx-auto "
         >
 
             <div
-                className="
-                    rounded-lg
-                    border
-                    border-gray-200
-                    bg-white
-                    p-6
-                    shadow-md
-                "
+                className=" rounded-lg border border-gray-200 bg-white p-6 shadow-md "
             >
 
                 <div className="space-y-4">
 
-                    {/* RUT */}
-
                     <div>
-
-                        <label
-                            className="
-                                block
-                                text-sm
-                                font-medium
-                                text-gray-700
-                            "
-                        >
-
-                            Rut
-
-                        </label>
-
-                        <input
-                            type="text"
-                            name="rut"
-                            value={
-                                formData.rut
-                            }
-                            onChange={
-                                handleChange
-                            }
-                            onBlur={() =>
-
-                                fetchPersonByRut(
-                                    formData.rut
-                                )
-
-                            }
+                        <label className=" block text-sm font-medium text-gray-700 " > Rut </label>
+                        <input type="text" name="rut" value={formData.rut} onChange={handleChange} onBlur={() => fetchPersonByRut(formData.rut)}
                             className="
                                 mt-1
                                 block
@@ -551,255 +467,89 @@ export default function UserForm() {
 
                                         type={
 
-                                            name ===
-                                                "email"
-
-                                                ?
-
-                                                "email"
-
-                                                :
-
-                                                "text"
-
+                                            name === "email" ? "email" : "text"
                                         }
-
                                         name={name}
-
                                         value={
-
                                             formData[
                                             name as keyof Person
                                             ]
-
                                         }
-
                                         onChange={
-
                                             handleChange
-
                                         }
-
-                                        className="
-                                            mt-1
-                                            block
-                                            w-full
-                                            rounded-md
-                                            border
-                                            border-gray-300
-                                            p-2.5
-                                        "
-
+                                        className="mt-1 block w-full rounded-md border border-gray-300 p-2.5"
                                     />
-
-                                    {
-
-                                        error &&
-
+                                    {error &&
                                         <p
-                                            className="
-                                                mt-1
-                                                text-sm
-                                                text-red-600
-                                            "
+                                            className=" mt-1 text-sm text-red-600"
                                         >
-
                                             {error}
-
                                         </p>
-
                                     }
-
                                 </div>
-
                             )
-
                         )
-
                     }
-
                     <div>
-
                         <label
-                            className="
-                                block
-                                text-sm
-                                font-medium
-                                text-gray-700
-                            "
-                        >
-
+                            className="block text-sm font-medium text-gray-700">
                             Comuna
-
                         </label>
 
                         <select
-
                             name="commune"
-
                             value={formData.commune}
-
                             onChange={handleChange}
-
-                            className="
-        mt-1
-        block
-        w-full
-        rounded-md
-        border
-        border-gray-300
-        p-2.5
-    "
-
-                        >
-
-                            <option value="">
-
-                                Selecciona la comuna
-
-                            </option>
-
-                            {
-
-                                communes.map((commune) => (
-
-                                    <option
-
-                                        key={commune.id}
-
-                                        value={commune.name}
-
-                                    >
-
-                                        {commune.name}
-
-                                    </option>
-
-                                ))
-
+                            className="mt-1 block w-full rounded-md border border-gray-300 p-2.5">
+                            <option value="">Selecciona la comuna</option>
+                            {communes.map((commune) => (
+                                <option key={commune.id}
+                                    value={commune.name}
+                                > {commune.name} </option>
+                            ))
                             }
-
                         </select>
-
-                        {
-
-                            errors.commune &&
-
+                        {errors.commune &&
                             <p
-                                className="
-                                    mt-1
-                                    text-sm
-                                    text-red-600
-                                "
-                            >
-
-                                {
-
-                                    errors.commune
-
-                                }
-
+                                className="mt-1 text-sm text-red-600 ">
+                                {errors.commune}
                             </p>
-
                         }
 
                     </div>
 
                     <div className="flex gap-2">
-
-                        <button
-
-                            type="button"
-
-                            onClick={() =>
-
-                                window.location.href = ("/form")
-
-                            }
-
-                            className="
-                                w-full
-                                rounded-md
-                                bg-gray-500
-                                py-2
-                                text-white
-                            "
-
-                        >
-
-                            Limpiar
-
+                        <button type="button" onClick={() =>
+                            window.location.href = ("/form")
+                        }
+                            className="w-full rounded-md bg-gray-500 py-2 text-white"
+                        >Limpiar
                         </button>
 
-                        <button
-
-                            type="button"
-
+                        <button type="button"
                             onClick={async () => {
-
                                 if (
                                     !formData.rut
                                 ) return;
-
                                 await fetch(
-
                                     `${process.env.NEXT_PUBLIC_API_URL}/person/${formData.rut}`,
-
-                                    {
-
-                                        method:
-                                            "DELETE"
-
-                                    }
-
+                                    { method: "DELETE" }
                                 );
-
-                                router.push(
-                                    "/user"
-                                );
-
+                                router.push("/user");
                             }}
-
-                            className="
-                                w-full
-                                rounded-md
-                                bg-red-600
-                                py-2
-                                text-white
-                            "
-
+                            className="w-full rounded-md bg-red-600 py-2 text-white"
                         >
-
                             Eliminar
-
                         </button>
 
-                        <button
-
-                            type="submit"
-
-                            className="
-                                w-full
-                                rounded-md
-                                bg-blue-700
-                                py-2
-                                text-white
-                            "
-
+                        <button type="submit" className="w-full rounded-md bg-blue-700 py-2 text-white"
                         >
-
                             Registrar
-
                         </button>
-
                     </div>
-
                 </div>
-
             </div>
-
         </form>
-
     );
-
 }
